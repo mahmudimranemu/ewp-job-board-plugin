@@ -14,27 +14,31 @@ if (!class_exists('EWP_Job_Board_Main')) {
             $this->load_classes();
             
             // Initialize hooks and actions
-            add_action('init', [$this, 'register_post_type']);
+            // add_action('init', [$this, 'register_post_type']);
             add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
         }
 
         private function load_classes() {
             require_once plugin_dir_path(__FILE__) . 'includes/class-ewp-job-board.php';
             require_once plugin_dir_path(__FILE__) . 'includes/class-ewp-job-board-admin.php';
+
+            // Instantiate the classes
+            new EWP_Job_Board();
+            new EWP_Job_Board_Admin();
         }
 
-        public function register_post_type() {
-            // Register custom post type for job listings
-            register_post_type('job_listing', [
-                'labels' => [
-                    'name' => __('Job Listings'),
-                    'singular_name' => __('Job Listing'),
-                ],
-                'public' => true,
-                'has_archive' => true,
-                'supports' => ['title', 'editor', 'thumbnail'],
-            ]);
-        }
+        // public function register_post_type() {
+        //     // Register custom post type for job listings
+        //     register_post_type('jobs', [
+        //         'labels' => [
+        //             'name' => __('Jobs '),
+        //             'singular_name' => __('Job '),
+        //         ],
+        //         'public' => true,
+        //         'has_archive' => true,
+        //         'supports' => ['title', 'editor', 'thumbnail'],
+        //     ]);
+        // }
 
         public function enqueue_admin_scripts() {
             // Enqueue admin styles and scripts
