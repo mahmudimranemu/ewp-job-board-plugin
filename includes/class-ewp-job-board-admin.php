@@ -1,3 +1,4 @@
+<?php
 class EWP_Job_Board_Admin {
     public function __construct() {
         add_action('admin_menu', [$this, 'ewp_job_board_admin_menu']);

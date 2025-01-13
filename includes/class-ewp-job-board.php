@@ -1,3 +1,4 @@
+<?php
 class EWP_Job_Board {
     public function __construct() {
         add_action('init', [$this, 'register_job_post_type']);
